@@ -15,6 +15,7 @@ t["2"]={3,4,5}
 trystack(nil,t)
 
 a={}
-a[a]="x";
+--a[a]="x"; --gotta make a check
+a[t]=t;
 
 trystack(a)
