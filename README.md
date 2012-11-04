@@ -24,6 +24,7 @@ Dependencies
 
  * [lua](http://www.lua.org/) the language, Lua 5.1.4 from [luaforwindows](http://code.google.com/p/luaforwindows/), but it should work for every proper lua which is supported by LuaBridge
  * [LuaBridge](https://github.com/vinniefalco/LuaBridge) for the declarative bindings to Lua
+ * [BOOST library](http://www.boost.org/) for boost::variant, boost::container and some more
 
 License
 -------
