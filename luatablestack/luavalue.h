@@ -73,7 +73,5 @@ struct LuaType {
 
 LuaType::Type GetType(LuaMultiValue const& v);
 
-
-typedef std::function<std::string (LuaTable const&)> TablePrinter;
 std::string ToString(LuaType::Type t);
 std::string ToString(LuaMultiValue const& v);

@@ -15,8 +15,6 @@ typedef std::function<LuaMultiValue ()> DeferredLuaValue;
 
 void TableCrawler::GetTable(lua_State *L, int index,std::shared_ptr<LuaTable> T)
 {
-	//if (lua_istable(L,index-1)) return;
-
 	const void* ref=lua_topointer(L,index);
 	tables[ref]=T;
 
