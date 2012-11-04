@@ -81,6 +81,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="luastack.cpp" />
+    <ClCompile Include="luatablecrawler.cpp" />
+    <ClCompile Include="luavalue.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="luastack.h" />
+    <ClInclude Include="luatablecrawler.h" />
+    <ClInclude Include="luavalue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

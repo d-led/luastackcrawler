@@ -1,9 +1,11 @@
 #include "luastack.h"
+#include "luatablecrawler.h"
+
 #include <lua.hpp>
 
-LuaType::Type GetType(LuaMultiValue& v)
+void LuaStack::Append(LuaMultiValue const& V)
 {
-	return LuaType::NIL;
+	Values.push_back(V);
 }
 
 static void iterate_and_print(lua_State *L, int index)
@@ -44,7 +46,6 @@ static void iterate_and_print(lua_State *L, int index)
 	printf("}");
 }
 
-
 void CrawlStack(lua_State* L,LuaStack& S)
 {
 	std::cout<<"-------------------"<<std::endl;
@@ -54,27 +55,44 @@ void CrawlStack(lua_State* L,LuaStack& S)
 		switch (t) {
 
 		case LUA_TSTRING:  /* strings */
-			printf("`%s'", lua_tostring(L, i));
+			{
+				std::string v;
+				v=lua_tostring(L,i);
+				S.Append(MakeLuaValue(v));
+			}
 			break;
 
 		case LUA_TBOOLEAN:  /* booleans */
-			printf(lua_toboolean(L, i) ? "true" : "false");
+			{
+				bool v;
+				v=lua_toboolean(L,i)?true:false;
+				S.Append(MakeLuaValue(v));
+			}
 			break;
 
 		case LUA_TNUMBER:  /* numbers */
-			printf("%g", lua_tonumber(L, i));
+			{
+				double v;
+				v=lua_tonumber(L,i);
+				S.Append(MakeLuaValue(v));
+			}
 			break;
 
 		case LUA_TTABLE:  /* tables */
-			iterate_and_print(L,i);
+			{
+				std::shared_ptr<LuaTable> v;
+				TableCrawler C(L,i);
+				v=C.GetTable();
+				//S.Append(MakeLuaValue(v));
+			}
 			break;
 
 		default:  /* other values */
-			printf("%s", lua_typename(L, t));
+			S.Append(MakeLuaValue(LuaNil()));
 			break;
 
 		}
 		printf("  ");  /* put a separator */
 	}
-	 printf("\n");  /* end the listing */
+	printf("\n");  /* end the listing */
 }
