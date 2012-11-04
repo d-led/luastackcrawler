@@ -7,6 +7,9 @@
 class LuaStack {
 public:
 	void Append(LuaMultiValue const& V);
+public:
+	std::vector<LuaMultiValue>::const_iterator begin() const;
+	std::vector<LuaMultiValue>::const_iterator end() const;
 private:
 	std::vector<LuaMultiValue> Values;
 };

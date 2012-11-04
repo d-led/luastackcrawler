@@ -1,86 +1,68 @@
 #include "luavalue.h"
-#include <lua.hpp>
 
 class type_inferrer_visitor : public boost::static_visitor<LuaType::Type>
 {
 public:
-    LuaType::Type operator()(LuaValue<bool>& v) const
+    LuaType::Type operator()(LuaValue<bool> const& v) const
     {
 		return v.Valid() ? LuaType::BOOLEAN : LuaType::NIL;
     }
     
-    LuaType::Type operator()(LuaValue<double>& v) const
+    LuaType::Type operator()(LuaValue<double> const& v) const
     {
 		return v.Valid() ? LuaType::NUMBER : LuaType::NIL;
     }
 
-    LuaType::Type operator()(LuaValue<std::string>& v) const
+    LuaType::Type operator()(LuaValue<std::string> const& v) const
     {
 		return v.Valid() ? LuaType::STRING : LuaType::NIL;
     }
 
-    LuaType::Type operator()(LuaValue<std::shared_ptr<LuaTable> >& v) const
+    LuaType::Type operator()(LuaValue<std::shared_ptr<LuaTable> > const& v) const
     {
 		return v.Valid() ? LuaType::TABLE : LuaType::NIL;
     }
 
-    LuaType::Type operator()(LuaValue<LuaFunction>& v) const
+    LuaType::Type operator()(LuaValue<LuaFunction> const& v) const
     {
 		return v.Valid() ? LuaType::FUNCTION : LuaType::NIL;
     }
 
-    LuaType::Type operator()(LuaValue<LuaThread>& v) const
+    LuaType::Type operator()(LuaValue<LuaThread> const& v) const
     {
 		return v.Valid() ? LuaType::THREAD : LuaType::NIL;
 	}
 
-	LuaType::Type operator()(LuaValue<LuaUserdata>& v) const
+	LuaType::Type operator()(LuaValue<LuaUserdata> const& v) const
     {
 		return v.Valid() ? LuaType::USERDATA : LuaType::NIL;
     }
 
-	LuaType::Type operator()(LuaValue<LuaNil>& v) const
+	LuaType::Type operator()(LuaValue<LuaNil> const& v) const
     {
 		return LuaType::NIL;
     }
 };
 
-LuaType::Type GetType(LuaMultiValue& v)
+void LuaTable::Append(LuaMultiValue const& key,LuaMultiValue const& value)
+{
+	entries.push_back(std::make_pair(key,value));
+}
+
+LuaType::Type GetType(LuaMultiValue const& v)
 {
 	return boost::apply_visitor( type_inferrer_visitor(), v );
 }
 
-LuaMultiValue GetScalarValue(lua_State* L,int pos)
+std::string ToString(LuaType::Type t)
 {
-	int t = lua_type(L, pos);
-	switch (t) {
-
-	case LUA_TSTRING:  /* strings */
-		{
-			std::string v;
-			v=lua_tostring(L,pos);
-			return MakeLuaValue(v);
-		}
-		break;
-
-	case LUA_TBOOLEAN:  /* booleans */
-		{
-			bool v;
-			v=lua_toboolean(L,pos)?true:false;
-			return MakeLuaValue(v);
-		}
-		break;
-
-	case LUA_TNUMBER:  /* numbers */
-		{
-			double v;
-			v=lua_tonumber(L,pos);
-			return MakeLuaValue(v);
-		}
-		break;
-
-	default:  /* other values */
-		return MakeLuaValue(LuaNil());
-		break;
-	}
+	if (t==LuaType::NIL) return "NIL";
+	if (t==LuaType::BOOLEAN) return "BOOLEAN";
+	if (t==LuaType::NUMBER) return "NUMBER";
+	if (t==LuaType::STRING) return "STRING";
+	if (t==LuaType::TABLE) return "TABLE";
+	if (t==LuaType::FUNCTION) return "FUNCTION";
+	if (t==LuaType::THREAD) return "THREAD";
+	if (t==LuaType::USERDATA) return "USERDATA";
+	return "";
 }

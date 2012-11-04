@@ -44,6 +44,9 @@ typedef boost::variant<
 	 >LuaMultiValue;
 
 class LuaTable {
+public:
+	void Append(LuaMultiValue const& key,LuaMultiValue const& value);
+private:
 	boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > entries;
 };
 
@@ -60,7 +63,6 @@ struct LuaType {
 	};
 };
 
-LuaType::Type GetType(LuaMultiValue& v);
+LuaType::Type GetType(LuaMultiValue const& v);
 
-struct lua_State;
-LuaMultiValue GetScalarValue(lua_State* L,int pos);
+std::string ToString(LuaType::Type t);

@@ -13,9 +13,19 @@ void report_errors(lua_State *L, int status)
 	}
 }
 
+static void PrintStack(LuaStack const& S)
+{
+	for (auto it=S.begin(); it!=S.end(); ++it)
+	{
+		std::cout<<ToString(GetType(*it))<<" ";
+	}
+	std::cout<<std::endl;
+}
+
 void trystack(lua_State* L) {
 	LuaStack S;
 	CrawlStack(L,S);
+	PrintStack(S);
 }
 
 int main() 
@@ -29,6 +39,8 @@ int main()
 	if ( s==0 ) {
 		s = lua_pcall(L, 0, LUA_MULTRET, 0);
 	}
+
 	report_errors(L, s);
+
 	lua_close(L);
 }
