@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <sstream>
-#include <boost/property_tree/ptree.hpp>
 
 #include "luastack.h"
 
