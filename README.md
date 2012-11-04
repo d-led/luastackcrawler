@@ -12,6 +12,15 @@ Example of usage:
 ````
 #include "luastack.h"
 
+static void PrintStack(LuaStack const& S)
+{
+	for (auto it=S.begin(); it!=S.end(); ++it)
+	{
+		std::cout<<ToString(*it)<<" ";
+	}
+	std::cout<<std::endl;
+}
+
 void trystack(lua_State* L) {
 	LuaStack S;
 	CrawlStack(L,S);
