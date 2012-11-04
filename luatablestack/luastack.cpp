@@ -48,51 +48,16 @@ static void iterate_and_print(lua_State *L, int index)
 
 void CrawlStack(lua_State* L,LuaStack& S)
 {
-	std::cout<<"-------------------"<<std::endl;
 	int top = lua_gettop(L);
 	for (int i = 1; i <= top; i++) {  /* repeat for each level */
 		int t = lua_type(L, i);
-		switch (t) {
-
-		case LUA_TSTRING:  /* strings */
-			{
-				std::string v;
-				v=lua_tostring(L,i);
-				S.Append(MakeLuaValue(v));
-			}
-			break;
-
-		case LUA_TBOOLEAN:  /* booleans */
-			{
-				bool v;
-				v=lua_toboolean(L,i)?true:false;
-				S.Append(MakeLuaValue(v));
-			}
-			break;
-
-		case LUA_TNUMBER:  /* numbers */
-			{
-				double v;
-				v=lua_tonumber(L,i);
-				S.Append(MakeLuaValue(v));
-			}
-			break;
-
-		case LUA_TTABLE:  /* tables */
-			{
-				std::shared_ptr<LuaTable> v;
-				TableCrawler C(L,i);
-				v=C.GetTable();
-				//S.Append(MakeLuaValue(v));
-			}
-			break;
-
-		default:  /* other values */
-			S.Append(MakeLuaValue(LuaNil()));
-			break;
-
+		if (t==LUA_TTABLE) {
+			std::shared_ptr<LuaTable> v;
+			TableCrawler C(L,i);
+			v=C.GetTable();
+			S.Append(MakeLuaValue(v));
+		} else {
+			S.Append(GetScalarValue(L,i));
 		}
-		printf("  ");  /* put a separator */
 	}
-	printf("\n");  /* end the listing */
 }

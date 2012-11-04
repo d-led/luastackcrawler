@@ -10,7 +10,9 @@ class TableCrawler {
 public:
 	TableCrawler(lua_State* L,int p);
 public:
-	std::shared_ptr<LuaTable> GetTable() const;
+	std::shared_ptr<LuaTable> GetTable() const; //calls Crawl first
+private:
+	void Crawl();
 private:
 	lua_State* L;
 	int pos;

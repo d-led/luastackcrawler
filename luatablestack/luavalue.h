@@ -61,3 +61,6 @@ struct LuaType {
 };
 
 LuaType::Type GetType(LuaMultiValue& v);
+
+struct lua_State;
+LuaMultiValue GetScalarValue(lua_State* L,int pos);
