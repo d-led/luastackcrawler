@@ -2,6 +2,8 @@
 #include <boost/variant.hpp>
 #include <boost/container/vector.hpp>
 #include <memory>
+#include <string>
+#include <functional>
 
 class LuaNil {
 };
@@ -23,6 +25,7 @@ class LuaValue
 public:
 	LuaValue(T v,bool ok):value(v),valid(ok){}
 	bool Valid() const { return valid; }
+	T Value() const { return value; }
 };
 
 template <typename T>
@@ -46,8 +49,13 @@ typedef boost::variant<
 class LuaTable {
 public:
 	void Append(LuaMultiValue const& key,LuaMultiValue const& value);
+public:
+	typedef boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
+public:
+	EntryContainer::const_iterator begin() const;
+	EntryContainer::const_iterator end() const;
 private:
-	boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > entries;
+	EntryContainer entries;
 };
 
 struct LuaType {
@@ -65,4 +73,7 @@ struct LuaType {
 
 LuaType::Type GetType(LuaMultiValue const& v);
 
+
+typedef std::function<std::string (LuaTable const&)> TablePrinter;
 std::string ToString(LuaType::Type t);
+std::string ToString(LuaMultiValue const& v);

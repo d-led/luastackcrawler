@@ -2,6 +2,8 @@
 #include <LuaBridge.h>
 
 #include <iostream>
+#include <sstream>
+#include <boost/property_tree/ptree.hpp>
 
 #include "luastack.h"
 
@@ -17,7 +19,7 @@ static void PrintStack(LuaStack const& S)
 {
 	for (auto it=S.begin(); it!=S.end(); ++it)
 	{
-		std::cout<<ToString(GetType(*it))<<" ";
+		std::cout<<ToString(*it)<<" ";
 	}
 	std::cout<<std::endl;
 }
