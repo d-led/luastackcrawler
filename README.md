@@ -9,6 +9,8 @@ Usage
 
 Use the visual studio project to compile in Visual Studio and start the test.
 Example of usage:
+
+c++:
 ````
 #include "luastack.h"
 
@@ -26,6 +28,18 @@ void trystack(lua_State* L) {
 	CrawlStack(L,S);
 	PrintStack(S);
 }
+
+...
+
+luabridge::getGlobalNamespace(L).addFunction("trystack",trystack);
+````
+
+lua:
+````
+t={}
+t[1]="1"
+t[2]="2"
+trystack("1",t)
 ````
 
 Dependencies
