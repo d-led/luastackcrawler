@@ -20,3 +20,5 @@ a[t]=t;
 a[{1,2}]={3}
 
 trystack(a)
+
+trystack2(1,2)
