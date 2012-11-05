@@ -16,7 +16,7 @@ void report_errors(lua_State *L, int status)
 
 static void PrintStack(LuaStack const& S)
 {
-	for (auto it=S.begin(); it!=S.end(); ++it)
+ for (std::vector<LuaMultiValue>::const_iterator it=S.begin(); it!=S.end(); ++it)
 	{
 		std::cout<<ToString(*it)<<" ";
 	}
@@ -29,13 +29,21 @@ void trystack(lua_State* L) {
 	PrintStack(S);
 }
 
+void trystack2(int a,lua_State* L) {
+	LuaStack S;
+	CrawlStack(L,S);
+	PrintStack(S);
+}
+
 int main() 
 {
 	lua_State *L = lua_open();
 	luaL_openlibs(L);
 	int s = luaL_loadfile(L, "test.lua");
 
-	luabridge::getGlobalNamespace(L).addFunction("trystack",trystack);
+	luabridge::getGlobalNamespace(L)
+  .addFunction("trystack",trystack)
+  .addFunction("trystack2",trystack2);
 
 	if ( s==0 ) {
 		s = lua_pcall(L, 0, LUA_MULTRET, 0);
