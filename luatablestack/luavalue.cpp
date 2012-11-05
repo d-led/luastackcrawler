@@ -21,7 +21,7 @@ public:
 		return v.Valid() ? LuaType::STRING : LuaType::NIL;
     }
 
-    LuaType::Type operator()(LuaValue<std::shared_ptr<LuaTable> > const& v) const
+    LuaType::Type operator()(LuaValue<boost::shared_ptr<LuaTable> > const& v) const
     {
 		return v.Valid() ? LuaType::TABLE : LuaType::NIL;
     }
@@ -114,7 +114,7 @@ public:
 		return v.Valid() ? v.Value() : "invalid value";
     }
 
-    std::string operator()(LuaValue<std::shared_ptr<LuaTable> > const& v) const
+    std::string operator()(LuaValue<boost::shared_ptr<LuaTable> > const& v) const
     {
 		bool already_done=Done(v.Value().get());
 		if (!already_done) AddDone(v.Value().get());
@@ -151,7 +151,7 @@ static std::string PrintTable(LuaTable const& T)
 {
 	std::stringstream s;
 	s<<"{";
-	for (auto it=T.begin(); it!=T.end();) {
+ for (LuaTable::EntryContainer::const_iterator it=T.begin(); it!=T.end();) {
 		s
 			<<_ToString(it->first)
 			<<"->"
