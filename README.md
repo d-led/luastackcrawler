@@ -42,6 +42,15 @@ t[2]="2"
 trystack("1",t)
 ````
 
+output:
+````
+1 {1->1 2->2}
+````
+
+Of course, the `ToString` function is meant only for demonstration purposes. By means of the iterators, the stack and the tables can be walked through.
+One has to keep in mind, that tables might have keys and values that can create circular references, which are still present in the C++ LuaStack by means of shared pointers to the tables.
+The `CrawlStack` and the `ToString` functions keep a temporary registry of visited tables in order to avoid infinite recurrence.
+
 Dependencies
 ------------
 
