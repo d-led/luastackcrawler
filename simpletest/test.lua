@@ -22,3 +22,6 @@ a[{1,2}]={3}
 trystack(a)
 
 trystack2(1,2)
+
+tryextension("begin",a,"end")
+trystackextension("begin",a,"end") --should produce the same result

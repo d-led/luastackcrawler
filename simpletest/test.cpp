@@ -4,7 +4,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "../luatablestack/luastack.h"
+#include "../luatablestack/luatablecrawler.h"
+#include "../luatablestack/luabridge_extensions.h"
 
 void report_errors(lua_State *L, int status)
 {
@@ -16,7 +17,7 @@ void report_errors(lua_State *L, int status)
 
 static void PrintStack(LuaStack const& S)
 {
- for (std::vector<LuaMultiValue>::const_iterator it=S.begin(); it!=S.end(); ++it)
+	for (std::vector<LuaMultiValue>::const_iterator it=S.begin(); it!=S.end(); ++it)
 	{
 		std::cout<<ToString(*it)<<" ";
 	}
@@ -35,6 +36,16 @@ void trystack2(int a,lua_State* L) {
 	PrintStack(S);
 }
 
+void tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
+{
+	std::cout<<b<<" "<<ToString(T)<<" "<<e<<std::endl;
+}
+
+void trystackextension(std::string b,LuaStack S) {
+	std::cout<<b<<" ";
+	PrintStack(S);
+}
+
 int main() 
 {
 	lua_State *L = lua_open();
@@ -42,8 +53,10 @@ int main()
 	int s = luaL_loadfile(L, "test.lua");
 
 	luabridge::getGlobalNamespace(L)
-  .addFunction("trystack",trystack)
-  .addFunction("trystack2",trystack2);
+		.addFunction("trystack",trystack)
+		.addFunction("trystack2",trystack2)
+		.addFunction("tryextension",tryextension)
+		.addFunction("trystackextension",trystackextension);
 
 	if ( s==0 ) {
 		s = lua_pcall(L, 0, LUA_MULTRET, 0);

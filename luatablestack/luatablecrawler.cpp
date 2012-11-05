@@ -1,18 +1,13 @@
 #include "luatablecrawler.h"
 #include "luavalue.h"
 #include "luavalueutil.h"
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
 #include <lua.hpp>
 
 TableCrawler::TableCrawler(lua_State* L,int p):
 	L(L),
-	pos(p),
-	T(new LuaTable)
+	pos(p)
 {
 }
-
-typedef boost::function<LuaMultiValue ()> DeferredLuaValue;
 
 /// http://stackoverflow.com/a/6142700/847349 modified
 void TableCrawler::GetTable(lua_State *L, int index,boost::shared_ptr<LuaTable> T)
@@ -34,37 +29,37 @@ void TableCrawler::GetTable(lua_State *L, int index,boost::shared_ptr<LuaTable> 
 		lua_pushvalue(L, -2);
 		// stack now contains: -1 => key; -2 => value; -3 => key; -4 => table
 		////////////////////////////////////////////////////////////////
-		DeferredLuaValue key;
+		LuaMultiValue key=LuaNil();
 		if (lua_istable(L,-1)) {
 			const void* kref=lua_topointer(L,-1);
 			TableReferences::iterator f=tables.find(kref);
 			if (f!=tables.end()) {
-				key=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,f->second);
+				key=f->second;
 			} else {
 				boost::shared_ptr<LuaTable> tablekey(new LuaTable);
 				GetTable(L,-1,tablekey);
-				key=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,tablekey);
+				key=tablekey;
 			}
 		} else {
-			key = boost::bind(&GetScalarValue, L, -1);
+			key = GetScalarValue(L, -1);
 		}
 		////////////////////////////////////////////////////////////////
-		DeferredLuaValue value;
+		LuaMultiValue value=LuaNil();
 		if (lua_istable(L,-2)) {
 			const void* kref=lua_topointer(L,-2);
 			TableReferences::const_iterator f=tables.find(kref);
 			if (f!=tables.end()) {
-				value=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,f->second);
+				value=f->second;
 			} else {
 				boost::shared_ptr<LuaTable> tablevalue(new LuaTable);
 				GetTable(L,-2,tablevalue);
-				value=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,tablevalue);
+				value=tablevalue;
 			}
 		} else {
-			value = boost::bind(GetScalarValue, L, -2);
+			value = GetScalarValue(L, -2);
 		}
 		// evaluate before popping
-		T->Append(key(),value());
+		T->Append(key,value);
 		// pop value + copy of key, leaving original key
 		lua_pop(L, 2);
 		// stack now contains: -1 => key; -2 => table
@@ -83,6 +78,7 @@ void TableCrawler::Crawl()
 
 boost::shared_ptr<LuaTable> TableCrawler::GetTable()
 {
+	T.reset(new LuaTable);
 	Crawl();
 	return T;
 }

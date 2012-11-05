@@ -10,7 +10,7 @@ LuaMultiValue GetScalarValue(lua_State* L,int pos)
 		{
 			std::string v;
 			v=lua_tostring(L,pos);
-			return MakeLuaValue(v);
+			return v;
 		}
 		break;
 
@@ -18,7 +18,7 @@ LuaMultiValue GetScalarValue(lua_State* L,int pos)
 		{
 			bool v;
 			v=lua_toboolean(L,pos)?true:false;
-			return MakeLuaValue(v);
+			return v;
 		}
 		break;
 
@@ -26,12 +26,12 @@ LuaMultiValue GetScalarValue(lua_State* L,int pos)
 		{
 			double v;
 			v=lua_tonumber(L,pos);
-			return MakeLuaValue(v);
+			return v;
 		}
 		break;
 
 	default:  /* other values */
-		return MakeLuaValue(LuaNil());
+		return LuaNil();
 		break;
 	}
 }

@@ -82,10 +82,13 @@
   <ItemGroup>
     <ClCompile Include="lauvalueutil.cpp" />
     <ClCompile Include="luastack.cpp" />
+    <ClCompile Include="luastackcrawler.cpp" />
     <ClCompile Include="luatablecrawler.cpp" />
     <ClCompile Include="luavalue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="luabridge_extensions.h" />
+    <ClInclude Include="luasctackcrawler.h" />
     <ClInclude Include="luastack.h" />
     <ClInclude Include="luatablecrawler.h" />
     <ClInclude Include="luavalue.h" />

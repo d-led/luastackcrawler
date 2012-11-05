@@ -17,33 +17,16 @@ class LuaThread {
 class LuaUserdata {
 };
 
-template <typename T>
-class LuaValue
-{
-	T value;
-	bool valid;
-public:
-	LuaValue(T v,bool ok):value(v),valid(ok){}
-	bool Valid() const { return valid; }
-	T Value() const { return value; }
-};
-
-template <typename T>
-LuaValue<T> MakeLuaValue(T v)
-{
-	return LuaValue<T>(v,true);
-}
-
 class LuaTable;
 typedef boost::variant<
-	LuaValue<LuaNil>,
-	LuaValue<bool>,
-	LuaValue<double>,
-	LuaValue<std::string>,
-	LuaValue<boost::shared_ptr<LuaTable> >,
-	LuaValue<LuaFunction>,
-	LuaValue<LuaThread>,
-	LuaValue<LuaUserdata>
+	LuaNil,
+	bool,
+	double,
+	std::string,
+	boost::shared_ptr<LuaTable>,
+	LuaFunction,
+	LuaThread,
+	LuaUserdata
 	 >LuaMultiValue;
 
 class LuaTable {

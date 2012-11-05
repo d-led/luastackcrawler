@@ -6,42 +6,42 @@
 class type_inferrer_visitor : public boost::static_visitor<LuaType::Type>
 {
 public:
-    LuaType::Type operator()(LuaValue<bool> const& v) const
+    LuaType::Type operator()(bool const& v) const
     {
-		return v.Valid() ? LuaType::BOOLEAN : LuaType::NIL;
+		return LuaType::BOOLEAN;
     }
     
-    LuaType::Type operator()(LuaValue<double> const& v) const
+    LuaType::Type operator()(double const& v) const
     {
-		return v.Valid() ? LuaType::NUMBER : LuaType::NIL;
+		return LuaType::NUMBER;
     }
 
-    LuaType::Type operator()(LuaValue<std::string> const& v) const
+    LuaType::Type operator()(std::string const& v) const
     {
-		return v.Valid() ? LuaType::STRING : LuaType::NIL;
+		return LuaType::STRING;
     }
 
-    LuaType::Type operator()(LuaValue<boost::shared_ptr<LuaTable> > const& v) const
+    LuaType::Type operator()(boost::shared_ptr<LuaTable> const& v) const
     {
-		return v.Valid() ? LuaType::TABLE : LuaType::NIL;
+		return LuaType::TABLE;
     }
 
-    LuaType::Type operator()(LuaValue<LuaFunction> const& v) const
+    LuaType::Type operator()(LuaFunction const& v) const
     {
-		return v.Valid() ? LuaType::FUNCTION : LuaType::NIL;
+		return LuaType::FUNCTION;
     }
 
-    LuaType::Type operator()(LuaValue<LuaThread> const& v) const
+    LuaType::Type operator()(LuaThread const& v) const
     {
-		return v.Valid() ? LuaType::THREAD : LuaType::NIL;
+		return LuaType::THREAD;
 	}
 
-	LuaType::Type operator()(LuaValue<LuaUserdata> const& v) const
+	LuaType::Type operator()(LuaUserdata const& v) const
     {
-		return v.Valid() ? LuaType::USERDATA : LuaType::NIL;
+		return LuaType::USERDATA;
     }
 
-	LuaType::Type operator()(LuaValue<LuaNil> const& v) const
+	LuaType::Type operator()(LuaNil const& v) const
     {
 		return LuaType::NIL;
     }
@@ -99,44 +99,45 @@ static std::string PrintTable(LuaTable const& T);
 class tostring_visitor : public boost::static_visitor<std::string>
 {
 public:
-    std::string operator()(LuaValue<bool> const& v) const
+    std::string operator()(bool const& v) const
     {
-		return v.Valid() ? (v.Value()?"true":"false") : "invalid value";
+		return (v?"true":"false");
     }
     
-    std::string operator()(LuaValue<double> const& v) const
+    std::string operator()(double const& v) const
     {
-		return v.Valid() ? boost::lexical_cast<std::string>(v.Value()) : "invalid value";
+		return boost::lexical_cast<std::string>(v);
     }
 
-    std::string operator()(LuaValue<std::string> const& v) const
+    std::string operator()(std::string const& v) const
     {
-		return v.Valid() ? v.Value() : "invalid value";
+		return v;
     }
 
-    std::string operator()(LuaValue<boost::shared_ptr<LuaTable> > const& v) const
+    std::string operator()(boost::shared_ptr<LuaTable> const& v) const
     {
-		bool already_done=Done(v.Value().get());
-		if (!already_done) AddDone(v.Value().get());
-		return v.Valid() ? (!already_done ? PrintTable(*v.Value()) : "table*") : "invalid value";
+		if (!v) return "table[nil]";
+		bool already_done=Done(v.get());
+		if (!already_done) AddDone(v.get());
+		return (!already_done) ? PrintTable(*v) : "table*";
     }
 
-    std::string operator()(LuaValue<LuaFunction> const& v) const
+    std::string operator()(LuaFunction const& v) const
     {
-		return v.Valid() ? "function" : "invalid value";
+		return "function";
     }
 
-    std::string operator()(LuaValue<LuaThread> const& v) const
+    std::string operator()(LuaThread const& v) const
     {
-		return v.Valid() ? "thread" : "invalid value";
+		return "thread";
 	}
 
-	std::string operator()(LuaValue<LuaUserdata> const& v) const
+	std::string operator()(LuaUserdata const& v) const
     {
-		return v.Valid() ? "userdata" : "invalid value";
+		return "userdata";
     }
 
-	std::string operator()(LuaValue<LuaNil> const& v) const
+	std::string operator()(LuaNil const& v) const
     {
 		return "nil";
     }

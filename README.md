@@ -7,7 +7,9 @@ Can be especially useful in conjunction with LuaBridge for supporting variable-l
 Usage
 -----
 
-Use the visual studio project to compile in Visual Studio and start the test.
+Use the visual studio project to compile in Visual Studio and start the test. Since the dependencies are portable, it is expected, that
+the crawler is also portable. This will be tested in the future.
+
 Example of usage:
 
 c++:
@@ -51,12 +53,33 @@ Of course, the `ToString` function is meant only for demonstration purposes. By 
 One has to keep in mind, that tables might have keys and values that can create circular references, which are still present in the C++ LuaStack by means of shared pointers to the tables.
 The `CrawlStack` and the `ToString` functions keep a temporary registry of visited tables in order to avoid infinite recurrence.
 
+LuaBridge extension
+-------------------
+The header file `luabridge_extensions.h` allows convenient use the `LuaStack` and `LuaTable` types as input parameters to the lua-bound stack. These classes are not Lua-bound and can be compiled
+without Lua, thus keeping the Lua-bound classes separate from Lua. The objects are generated within the extension by crawling the stack using `CrawlStack`. `LuaTable`s are passed in boost::shared_ptr, since they may contain circular references, which are resolved, but preserved during the crawling process.
+
+````cpp
+void tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
+{
+	std::cout<<b<<" "<<ToString(T)<<" "<<e<<std::endl;
+}
+````
+
+`LuaStack` is greedy, and thus should be used as the last input parameter, just as `lua_State` in LuaBridge.
+
+````cpp
+void trystackextension(std::string b,LuaStack S) {
+	std::cout<<b<<" ";
+	PrintStack(S);
+}
+````
+
 Dependencies
 ------------
 
  * [lua](http://www.lua.org/) the language, Lua 5.1.4 from [luaforwindows](http://code.google.com/p/luaforwindows/), but it should work for every proper lua which is supported by LuaBridge
  * [LuaBridge](https://github.com/vinniefalco/LuaBridge) for the declarative bindings to Lua
- * [BOOST library](http://www.boost.org/) for boost::variant, boost::container and some more
+ * [BOOST library](http://www.boost.org/) for `boost::variant`, portable `shared_ptr` and some more
 
 License
 -------

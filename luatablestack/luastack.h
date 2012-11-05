@@ -10,9 +10,7 @@ public:
 public:
 	std::vector<LuaMultiValue>::const_iterator begin() const;
 	std::vector<LuaMultiValue>::const_iterator end() const;
+	size_t size() const;
 private:
 	std::vector<LuaMultiValue> Values;
 };
-
-struct lua_State;
-void CrawlStack(lua_State* L,LuaStack& S);

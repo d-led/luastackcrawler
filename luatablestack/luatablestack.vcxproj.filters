@@ -27,6 +27,9 @@
     <ClCompile Include="lauvalueutil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="luastackcrawler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="luastack.h">
@@ -39,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="luavalueutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="luabridge_extensions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="luasctackcrawler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
