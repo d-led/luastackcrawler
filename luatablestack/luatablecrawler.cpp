@@ -1,7 +1,8 @@
 #include "luatablecrawler.h"
 #include "luavalue.h"
 #include "luavalueutil.h"
-#include <functional>
+#include <boost/function.hpp>
+#include <boost/bind.hpp>
 #include <lua.hpp>
 
 TableCrawler::TableCrawler(lua_State* L,int p):
@@ -11,10 +12,10 @@ TableCrawler::TableCrawler(lua_State* L,int p):
 {
 }
 
-typedef std::function<LuaMultiValue ()> DeferredLuaValue;
+typedef boost::function<LuaMultiValue ()> DeferredLuaValue;
 
 /// http://stackoverflow.com/a/6142700/847349 modified
-void TableCrawler::GetTable(lua_State *L, int index,std::shared_ptr<LuaTable> T)
+void TableCrawler::GetTable(lua_State *L, int index,boost::shared_ptr<LuaTable> T)
 {
 	const void* ref=lua_topointer(L,index);
 	tables[ref]=T;
@@ -38,14 +39,14 @@ void TableCrawler::GetTable(lua_State *L, int index,std::shared_ptr<LuaTable> T)
 			const void* kref=lua_topointer(L,-1);
 			TableReferences::iterator f=tables.find(kref);
 			if (f!=tables.end()) {
-				key=std::bind(&MakeLuaValue<std::shared_ptr<LuaTable> >,f->second);
+				key=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,f->second);
 			} else {
-				std::shared_ptr<LuaTable> tablekey(new LuaTable);
+				boost::shared_ptr<LuaTable> tablekey(new LuaTable);
 				GetTable(L,-1,tablekey);
-				key=std::bind(&MakeLuaValue<std::shared_ptr<LuaTable> >,tablekey);
+				key=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,tablekey);
 			}
 		} else {
-			key = std::bind(&GetScalarValue, L, -1);
+			key = boost::bind(&GetScalarValue, L, -1);
 		}
 		////////////////////////////////////////////////////////////////
 		DeferredLuaValue value;
@@ -53,14 +54,14 @@ void TableCrawler::GetTable(lua_State *L, int index,std::shared_ptr<LuaTable> T)
 			const void* kref=lua_topointer(L,-2);
 			TableReferences::const_iterator f=tables.find(kref);
 			if (f!=tables.end()) {
-				value=std::bind(&MakeLuaValue<std::shared_ptr<LuaTable> >,f->second);
+				value=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,f->second);
 			} else {
-				std::shared_ptr<LuaTable> tablevalue(new LuaTable);
+				boost::shared_ptr<LuaTable> tablevalue(new LuaTable);
 				GetTable(L,-2,tablevalue);
-				value=std::bind(&MakeLuaValue<std::shared_ptr<LuaTable> >,tablevalue);
+				value=boost::bind(&MakeLuaValue<boost::shared_ptr<LuaTable> >,tablevalue);
 			}
 		} else {
-			value = std::bind(GetScalarValue, L, -2);
+			value = boost::bind(GetScalarValue, L, -2);
 		}
 		// evaluate before popping
 		T->Append(key(),value());
@@ -80,7 +81,7 @@ void TableCrawler::Crawl()
 	GetTable(L,pos,T);
 }
 
-std::shared_ptr<LuaTable> TableCrawler::GetTable()
+boost::shared_ptr<LuaTable> TableCrawler::GetTable()
 {
 	Crawl();
 	return T;
