@@ -26,7 +26,7 @@ void CrawlStack(lua_State* L,LuaStack& S)
 		int t = lua_type(L, i);
 		if (t==LUA_TTABLE) {
 			TableCrawler C(L,i);
-			std::shared_ptr<LuaTable> v=C.GetTable();
+			boost::shared_ptr<LuaTable> v=C.GetTable();
 			S.Append(MakeLuaValue(v));
 		} else {
 			S.Append(GetScalarValue(L,i));
