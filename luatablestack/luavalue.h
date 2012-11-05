@@ -1,9 +1,9 @@
 #pragma once
 #include <boost/variant.hpp>
 #include <boost/container/vector.hpp>
-#include <memory>
+#include <boost/shared_ptr.hpp>
 #include <string>
-#include <functional>
+#include <boost/functional.hpp>
 
 class LuaNil {
 };
@@ -40,7 +40,7 @@ typedef boost::variant<
 	LuaValue<bool>,
 	LuaValue<double>,
 	LuaValue<std::string>,
-	LuaValue<std::shared_ptr<LuaTable> >,
+	LuaValue<boost::shared_ptr<LuaTable> >,
 	LuaValue<LuaFunction>,
 	LuaValue<LuaThread>,
 	LuaValue<LuaUserdata>
