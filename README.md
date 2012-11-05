@@ -11,7 +11,7 @@ Use the visual studio project to compile in Visual Studio and start the test.
 Example of usage:
 
 c++:
-````
+````cpp
 #include "luastack.h"
 
 static void PrintStack(LuaStack const& S)
@@ -35,7 +35,7 @@ luabridge::getGlobalNamespace(L).addFunction("trystack",trystack);
 ````
 
 lua:
-````
+````lua
 t={}
 t[1]="1"
 t[2]="2"
