@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luatablestack", "luatablestack\luatablestack.vcproj", "{15B1A27F-121F-48EB-8145-363A79EFA157}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simpletest", "simpletest\simpletest.vcproj", "{3BDA8EB9-09C7-482B-9B6E-437101565591}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15B1A27F-121F-48EB-8145-363A79EFA157}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15B1A27F-121F-48EB-8145-363A79EFA157}.Debug|Win32.Build.0 = Debug|Win32
+		{15B1A27F-121F-48EB-8145-363A79EFA157}.Release|Win32.ActiveCfg = Release|Win32
+		{15B1A27F-121F-48EB-8145-363A79EFA157}.Release|Win32.Build.0 = Release|Win32
+		{3BDA8EB9-09C7-482B-9B6E-437101565591}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3BDA8EB9-09C7-482B-9B6E-437101565591}.Debug|Win32.Build.0 = Debug|Win32
+		{3BDA8EB9-09C7-482B-9B6E-437101565591}.Release|Win32.ActiveCfg = Release|Win32
+		{3BDA8EB9-09C7-482B-9B6E-437101565591}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -35,6 +35,7 @@ build/
 *.exp
 *.vspscc
 *.vssscc
+*.old
 .builds
 
 *.pidb
