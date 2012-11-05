@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "luastack.h"
+#include "../luatablestack/luastack.h"
 
 void report_errors(lua_State *L, int status)
 {

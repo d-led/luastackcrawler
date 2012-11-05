@@ -11,19 +11,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}</ProjectGuid>
+    <ProjectGuid>{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>luatablestack</RootNamespace>
+    <RootNamespace>simpletest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v100</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v100</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -80,16 +80,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lauvalueutil.cpp" />
-    <ClCompile Include="luastack.cpp" />
-    <ClCompile Include="luatablecrawler.cpp" />
-    <ClCompile Include="luavalue.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="luastack.h" />
-    <ClInclude Include="luatablecrawler.h" />
-    <ClInclude Include="luavalue.h" />
-    <ClInclude Include="luavalueutil.h" />
+    <None Include="test.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\luatablestack\luatablestack.vcxproj">
+      <Project>{60098b2f-d4f5-40cd-9b27-939fe4c7fa24}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

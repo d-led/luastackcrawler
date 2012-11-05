@@ -15,31 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="luastack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="luavalue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="luatablecrawler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lauvalueutil.cpp">
+    <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="luastack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="luavalue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="luatablecrawler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="luavalueutil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="test.lua" />
   </ItemGroup>
 </Project>
