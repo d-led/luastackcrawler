@@ -1360,6 +1360,7 @@ struct FuncTraits <R (T::*) () const, D>
   }
 };
 
+#if !defined(_MSC_VER) || (_MSC_VER < 1700) //d-led: VS2012
 template <class T, typename R, typename P1, typename D>
 struct FuncTraits <R (T::*) (P1) const, D>
 {
@@ -1487,10 +1488,13 @@ struct FuncTraits <R (T::*) (P1, P2, P3, P4, P5, P6, P7, P8) const, D>
   }
 };
 
+#endif
+
 #if defined (THROWSPEC)
 
 /* Ordinary function pointers. */
 
+#if !defined(_MSC_VER) || (_MSC_VER < 1700) //d-led: VS2012
 template <typename R, typename D>
 struct FuncTraits <R (*) () THROWSPEC, D>
 {
@@ -1774,6 +1778,8 @@ struct FuncTraits <R (T::*) () const THROWSPEC, D>
     return (obj->*fp)();
   }
 };
+
+#endif
 
 template <class T, typename R, typename P1, typename D>
 struct FuncTraits <R (T::*) (P1) const THROWSPEC, D>

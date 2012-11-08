@@ -32,7 +32,7 @@ namespace luabridge {
 			for (int i = index; i <= top; i++) {  /* repeat for each level */
 				CrawlStack(L,S,i);
 			}
-			lua_pop(L,S.size());
+			lua_pop(L,(int)S.size());
 			return S;
 		}
 	};

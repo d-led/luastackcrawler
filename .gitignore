@@ -36,6 +36,7 @@ build/
 *.vspscc
 *.vssscc
 *.old
+*.bak
 .builds
 
 *.pidb
