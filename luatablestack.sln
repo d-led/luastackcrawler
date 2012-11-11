@@ -8,25 +8,35 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug vc11|Win32 = Debug vc11|Win32
+		Debug vc120_CTP_Nov|Win32 = Debug vc120_CTP_Nov|Win32
 		Debug|Win32 = Debug|Win32
 		Release vc11|Win32 = Release vc11|Win32
+		Release vc120_CTP_Nov|Win32 = Release vc120_CTP_Nov|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug vc11|Win32.ActiveCfg = Debug vc11|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug vc11|Win32.Build.0 = Debug vc11|Win32
+		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug vc120_CTP_Nov|Win32.ActiveCfg = Debug vc120_CTP_Nov|Win32
+		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug vc120_CTP_Nov|Win32.Build.0 = Debug vc120_CTP_Nov|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug|Win32.ActiveCfg = Debug|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Debug|Win32.Build.0 = Debug|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release vc11|Win32.ActiveCfg = Release vc11|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release vc11|Win32.Build.0 = Release vc11|Win32
+		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release vc120_CTP_Nov|Win32.ActiveCfg = Release vc120_CTP_Nov|Win32
+		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release vc120_CTP_Nov|Win32.Build.0 = Release vc120_CTP_Nov|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release|Win32.ActiveCfg = Release|Win32
 		{60098B2F-D4F5-40CD-9B27-939FE4C7FA24}.Release|Win32.Build.0 = Release|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug vc11|Win32.ActiveCfg = Debug vc11|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug vc11|Win32.Build.0 = Debug vc11|Win32
+		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug vc120_CTP_Nov|Win32.ActiveCfg = Debug vc120_CTP_Nov|Win32
+		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug vc120_CTP_Nov|Win32.Build.0 = Debug vc120_CTP_Nov|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Debug|Win32.Build.0 = Debug|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release vc11|Win32.ActiveCfg = Release vc11|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release vc11|Win32.Build.0 = Release vc11|Win32
+		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release vc120_CTP_Nov|Win32.ActiveCfg = Release vc120_CTP_Nov|Win32
+		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release vc120_CTP_Nov|Win32.Build.0 = Release vc120_CTP_Nov|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release|Win32.ActiveCfg = Release|Win32
 		{4C7C5BA9-66B1-46EB-88A3-371A73DE2AAC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
