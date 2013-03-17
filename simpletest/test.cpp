@@ -15,35 +15,41 @@ void report_errors(lua_State *L, int status)
 	}
 }
 
-static void PrintStack(LuaStack const& S)
+static std::string PrintStack(LuaStack const& S)
 {
+	std::stringstream test_output;
 	for (std::vector<LuaMultiValue>::const_iterator it=S.begin(); it!=S.end(); ++it)
 	{
-		std::cout<<ToString(*it)<<" ";
+		test_output<<ToString(*it);
+		test_output<<" ";
 	}
-	std::cout<<std::endl;
+	std::string teststring=test_output.str();
+	std::cout<<teststring<<std::endl;
+	return teststring;
 }
 
-void trystack(lua_State* L) {
+std::string trystack(lua_State* L) {
 	LuaStack S;
 	CrawlStack(L,S);
-	PrintStack(S);
+	return PrintStack(S);
 }
 
-void trystack2(int a,lua_State* L) {
+std::string trystack2(int a,lua_State* L) {
 	LuaStack S;
 	CrawlStack(L,S);
-	PrintStack(S);
+	return PrintStack(S);
 }
 
-void tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
+std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
 {
-	std::cout<<b<<" "<<ToString(T)<<" "<<e<<std::endl;
+	std::string res=b+" "+ToString(T)+" ";
+	std::cout<<res<<std::endl;
+	return res;
 }
 
-void trystackextension(std::string b,LuaStack S) {
+std::string trystackextension(std::string b,LuaStack S) {
 	std::cout<<b<<" ";
-	PrintStack(S);
+	return PrintStack(S);
 }
 
 int main() 
