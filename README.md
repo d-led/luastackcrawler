@@ -4,6 +4,8 @@ luastackcrawler
 A walkable wrapper of the Lua stack,including "unwinding" the tables.
 Can be especially useful in conjunction with LuaBridge for supporting variable-length parameter lists and tables as parameters.
 
+It doesn't work properly yet :)
+
 Usage
 -----
 
