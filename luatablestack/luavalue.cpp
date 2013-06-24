@@ -2,6 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include <vector>
 #include <algorithm>
+#include <picojson.h>
 
 class type_inferrer_visitor : public boost::static_visitor<LuaType::Type>
 {
@@ -94,13 +95,18 @@ static void ClearDone()
 	done.clear();
 }
 
-static std::string PrintTable(LuaTable const& T);
+static std::string PrintTable(LuaTable const& T,picojson::object& obj);
 
 class tostring_visitor : public boost::static_visitor<std::string>
 {
+	picojson::object& obj;
+public:
+	tostring_visitor(picojson::object& o) : obj(o) {}
+
 public:
     std::string operator()(bool const& v) const
     {
+		obj
 		return (v?"true":"false");
     }
     
@@ -119,7 +125,7 @@ public:
 		if (!v) return "table[nil]";
 		bool already_done=Done(v.get());
 		if (!already_done) AddDone(v.get());
-		return (!already_done) ? PrintTable(*v) : "table*";
+		return (!already_done) ? PrintTable(*v,obj) : "table*";
     }
 
     std::string operator()(LuaFunction const& v) const
@@ -143,20 +149,20 @@ public:
     }
 };
 
-static std::string _ToString(LuaMultiValue const& v)
+static std::string ToJSON(LuaMultiValue const& v,picojson::object& obj)
 {
-	return boost::apply_visitor( tostring_visitor(), v );
+	return boost::apply_visitor( tostring_visitor(obj), v );
 }
 
-static std::string PrintTable(LuaTable const& T)
+static std::string PrintTable(LuaTable const& T,picojson::object& obj)
 {
 	std::stringstream s;
 	s<<"{";
  for (LuaTable::EntryContainer::const_iterator it=T.begin(); it!=T.end();) {
 		s
-			<<_ToString(it->first)
+			<<ToJSON(it->first,obj)
 			<<"->"
-			<<_ToString(it->second);
+			<<ToJSON(it->second,obj);
 		if (++it!=T.end()) s<<" ";
 	}
 	s<<"}";
@@ -165,7 +171,8 @@ static std::string PrintTable(LuaTable const& T)
 
 std::string ToString(LuaMultiValue const& v)
 {
-	std::string res=_ToString(v);
+	picojson::object o;
+	std::string res=ToJSON(v,o);
 	ClearDone();
 	return res;
 }
