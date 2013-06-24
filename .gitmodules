@@ -1,3 +1,9 @@
 [submodule "Catch"]
 	path = Catch
 	url = git://github.com/philsquared/Catch.git
+[submodule "LuaBridge"]
+	path = LuaBridge
+	url = git@github.com:vinniefalco/LuaBridge.git
+[submodule "picojson"]
+	path = picojson
+	url = git@github.com:kazuho/picojson.git
