@@ -46,3 +46,9 @@ expected=expected.."end"
 res=trystackextension("begin",a,"end") --should produce the same result
 print('expected: '..expected)
 assert(res==expected)
+
+tryluaref(tryluaref)
+tryluaref(LuaRef)
+tryluaref("bla")
+tryluaref(false)
+tryluaref({})

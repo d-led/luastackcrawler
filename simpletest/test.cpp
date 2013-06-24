@@ -52,6 +52,21 @@ std::string trystackextension(std::string b,LuaStack S) {
 	return PrintStack(S);
 }
 
+void tryluaref(luabridge::LuaRef ref)
+{
+	std::cout<<__FUNCTION__<<"--------------"<<std::endl;
+	std::cout
+		<<"nil:"<<ref.isNil()<<std::endl
+		<<"function:"<<ref.isFunction()<<std::endl
+		<<"userdata:"<<ref.isUserdata()<<std::endl
+		<<"lightuserdata:"<<ref.isLightUserdata()<<std::endl
+		<<"number:"<<ref.isNumber()<<std::endl
+		<<"string:"<<ref.isString()<<std::endl
+		<<"table:"<<ref.isTable()<<std::endl
+		<<"thread:"<<ref.isThread()<<std::endl
+		;
+}
+
 int main() 
 {
 	lua_State *L = lua_open();
@@ -62,7 +77,9 @@ int main()
 		.addFunction("trystack",trystack)
 		.addFunction("trystack2",trystack2)
 		.addFunction("tryextension",tryextension)
-		.addFunction("trystackextension",trystackextension);
+		.addFunction("trystackextension",trystackextension)
+		.addFunction("tryluaref",tryluaref)
+		;
 
 	if ( s==0 ) {
 		s = lua_pcall(L, 0, LUA_MULTRET, 0);
