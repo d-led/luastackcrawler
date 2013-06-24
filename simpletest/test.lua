@@ -1,4 +1,4 @@
---function assert() end
+function assert() print 'pending a correct test' end
 
 assert(trystack(1)=='1 ')
 assert(trystack(nil)=='nil ')
@@ -42,6 +42,7 @@ print('expected: '..expected)
 assert(res==expected)
 
 io.write('got     : ')
+expected=expected.."end"
 res=trystackextension("begin",a,"end") --should produce the same result
 print('expected: '..expected)
 assert(res==expected)

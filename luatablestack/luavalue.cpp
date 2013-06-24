@@ -143,7 +143,7 @@ public:
     }
 };
 
-static std::string ToJSON(LuaMultiValue const& v)
+static std::string _ToString(LuaMultiValue const& v)
 {
 	return boost::apply_visitor( tostring_visitor(), v );
 }
@@ -154,9 +154,9 @@ static std::string PrintTable(LuaTable const& T)
 	s<<"{";
  for (LuaTable::EntryContainer::const_iterator it=T.begin(); it!=T.end();) {
 		s
-			<<ToJSON(it->first)
+			<<_ToString(it->first)
 			<<"->"
-			<<ToJSON(it->second);
+			<<_ToString(it->second);
 		if (++it!=T.end()) s<<" ";
 	}
 	s<<"}";
@@ -165,7 +165,7 @@ static std::string PrintTable(LuaTable const& T)
 
 std::string ToString(LuaMultiValue const& v)
 {
-	std::string res=ToJSON(v);
+	std::string res=_ToString(v);
 	ClearDone();
 	return res;
 }
