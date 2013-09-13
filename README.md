@@ -6,6 +6,35 @@ Can be especially useful in conjunction with LuaBridge for supporting variable-l
 
 The test is not automated yet.
 
+Motivation
+----------
+
+What is lacking in some of the Lua-C++ glue libraries is a way to natively use tables as input and out parameters.
+
+For example, here's a function call I want to be implemented in C++ and used from Lua:
+
+````cpp
+assert( ArraySize { 1, 2, 5, bla='7' } == 3 )
+````
+
+The expected C++ implementation should be something like that:
+
+````cpp
+int ArraySize(boost::shared_ptr<LuaTable> T)
+{
+	if (!T)
+		return 0;
+ 
+	return std::count_if(
+		T->begin(),
+		T->end(),
+  		[](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
+			return entry.first.which()==2; /*number*/
+		});
+}
+````
+
+
 Usage
 -----
 
