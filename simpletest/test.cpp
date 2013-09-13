@@ -67,6 +67,16 @@ void tryluaref(luabridge::LuaRef ref)
 		;
 }
 
+int ArraySize(boost::shared_ptr<LuaTable> T)
+{
+ if (!T)
+  return 0;
+ return std::count_if(T->begin(),T->end(),
+  [](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
+  return entry.first.which()==2; /*number*/
+ });
+}
+
 int main() 
 {
 	lua_State *L = lua_open();
@@ -79,6 +89,7 @@ int main()
 		.addFunction("tryextension",tryextension)
 		.addFunction("trystackextension",trystackextension)
 		.addFunction("tryluaref",tryluaref)
+  .addFunction("ArraySize",ArraySize)
 		;
 
 	if ( s==0 ) {
