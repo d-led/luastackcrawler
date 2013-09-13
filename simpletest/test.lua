@@ -52,3 +52,5 @@ tryluaref(LuaRef)
 tryluaref("bla")
 tryluaref(false)
 tryluaref({})
+
+assert( ArraySize { 1, 2, 5, bla='7' } == 3 )
