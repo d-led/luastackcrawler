@@ -73,7 +73,7 @@ int ArraySize(boost::shared_ptr<LuaTable> T)
   return 0;
  return std::count_if(T->begin(),T->end(),
   [](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
-  return entry.first.which()==2; /*number*/
+  return boost::get<double>(&entry.first); /*number*/
  });
 }
 
