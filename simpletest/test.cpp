@@ -50,6 +50,7 @@ std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string
 }
 
 std::string trystackextension(std::string b,LuaStack S) {
+	std::cout<<picojson::convert::to_string(SerializableLuaStack(S))<<std::endl;
 	std::cout<<b<<" ";
 	return PrintStack(S);
 }

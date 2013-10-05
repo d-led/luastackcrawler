@@ -83,7 +83,7 @@ public:
 	::picojson::value Value();
 private:
 	std::vector<LuaMultiValue> Values;
-
+public:
 	friend class picojson::convert::access;
 	template<class Archive>
 	void json(Archive & ar)
