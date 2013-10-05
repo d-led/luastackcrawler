@@ -7,6 +7,8 @@
 #include "../luatablestack/luatablecrawler.h"
 #include "../luatablestack/luabridge_extensions.h"
 
+#include "picojson_luavalue_serializer.h"
+
 void report_errors(lua_State *L, int status)
 {
 	if ( status!=0 ) {
@@ -73,7 +75,7 @@ int ArraySize(boost::shared_ptr<LuaTable> T)
   return 0;
  return std::count_if(T->begin(),T->end(),
   [](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
-  return boost::get<double>(&entry.first); /*number*/
+	  return GetType(entry.first)==LuaType::NUMBER;
  });
 }
 

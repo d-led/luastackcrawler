@@ -4,3 +4,9 @@
 [submodule "Catch"]
 	path = Catch
 	url = https://github.com/philsquared/Catch.git
+[submodule "picojson_serializer"]
+	path = picojson_serializer
+	url = https://github.com/d-led/picojson_serializer.git
+[submodule "picojson"]
+	path = picojson
+	url = https://github.com/kazuho/picojson.git
