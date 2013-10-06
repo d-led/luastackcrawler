@@ -111,3 +111,4 @@ packages/
 *.idb
 *.orig
 *.lib
+*.so
