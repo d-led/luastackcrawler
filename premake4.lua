@@ -6,7 +6,7 @@ local cmd = {
  includedirs = { linux = { "./Lua/include"}, windows = { "./Lua/include", os.getenv("BOOST") }, macosx = { "" } },
  links = { linux = "lua", windows = "lua5.1", macosx = { "lua","c++" } },
  location = { linux = "Build", windows = "Build", macosx = "BuildClang" },
- buildoptions = { linux = "-v -std=c++11 -fPIC", windows = "-v -std=c++11 -fPIC", macosx = "-v -stdlib=libc++ -std=c++11 -fPIC" }
+ buildoptions = { linux = "-v -std=gnu++0x -fPIC", windows = "-v -std=c++11 -fPIC", macosx = "-v -stdlib=libc++ -std=c++11 -fPIC" }
 }
 
 local cfg={}
