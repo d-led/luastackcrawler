@@ -2,8 +2,8 @@ local OS=os.get()
 
 local cmd = {
  dir =     { linux = "ls", windows = "dir", macosx = "ls" },
- libdirs = { linux = { "./Lua/lib"}, windows = "./Lua/lib", macosx = { "" } },
- includedirs = { linux = { "./Lua/include"}, windows = "./Lua/include", macosx = { "" } },
+ libdirs = { linux = { "./Lua/lib"}, windows = { "./Lua/lib" }, macosx = { "" } },
+ includedirs = { linux = { "./Lua/include"}, windows = { "./Lua/include", os.getenv("BOOST") }, macosx = { "" } },
  links = { linux = "lua", windows = "lua5.1", macosx = "lua" }
 }
 

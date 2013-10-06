@@ -110,3 +110,4 @@ packages/
 
 *.idb
 *.orig
+*.lib
