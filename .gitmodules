@@ -10,3 +10,6 @@
 [submodule "lua/json"]
 	path = lua/json
 	url = https://github.com/clementfarabet/lua---json.git
+[submodule "Lua/json"]
+	path = Lua/json
+	url = https://github.com/clementfarabet/lua---json.git
