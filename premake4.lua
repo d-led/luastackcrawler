@@ -4,7 +4,9 @@ local cmd = {
  dir =     { linux = "ls", windows = "dir", macosx = "ls" },
  libdirs = { linux = { "./Lua/lib"}, windows = { "./Lua/lib" }, macosx = { "" } },
  includedirs = { linux = { "./Lua/include"}, windows = { "./Lua/include", os.getenv("BOOST") }, macosx = { "" } },
- links = { linux = "lua", windows = "lua5.1", macosx = { "lua","c++" } }
+ links = { linux = "lua", windows = "lua5.1", macosx = { "lua","c++" } },
+ location = { linux = "Build", windows = "Build", macosx = "BuildClang" },
+ buildoptions = { linux = "-v -std=c++11 -fPIC", windows = "-v -std=c++11 -fPIC", macosx = "-v -stdlib=libc++ -std=c++11 -fPIC" }
 }
 
 local cfg={}
@@ -26,7 +28,7 @@ end
 
 -- Apply to current "filter" (solution/project)
 function DefaultConfig()
-	location "Build"
+	location( cfg.location )
 	configuration "Debug"
 		defines { "DEBUG", "_DEBUG" }
 		objdir "Build/obj"
@@ -46,7 +48,7 @@ function CompilerSpecificConfiguration()
 	configuration {"xcode*" }
 
 	configuration {"gmake"}
-		buildoptions { "-v -stdlib=libc++ -fPIC" }
+		buildoptions( cfg.buildoptions )
 
 	configuration {"codeblocks" }
 
@@ -72,7 +74,7 @@ newaction {
 
 -- A solution contains projects, and defines the available configurations
 local sln=solution "stackcrawlertest"
-	location "Build"
+	location( cfg.location )
 		sln.absbasedir=path.getabsolute(sln.basedir)
 		configurations { "Debug", "Release" }
 		platforms { "native","x32", "x64" }
@@ -91,7 +93,7 @@ local sln=solution "stackcrawlertest"
 
 ----------------------------------------------------------------------------------------------------------------
    local dll=project "stackcrawlertest"
-   location "Build"
+	location( cfg.location )
 		kind "SharedLib"
 		DefaultConfig()
 		language "C++"

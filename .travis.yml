@@ -11,6 +11,7 @@ before_script:
   - sudo luarocks install busted
 
 script:
+  - sed 's/#include "detail\/dump.h"//g' "./LuaBridge/Source/LuaBridge/LuaBridge.h" > r.tmp && mv r.tmp LuaBridge/Source/LuaBridge/LuaBridge.h 
   - make -C Build config=release
   - cd simpletest
   - busted json_test.lua
