@@ -12,8 +12,9 @@ describe("C++ LuaStackCrawler JSON output", function()
 	describe("LuaStack wrapper is a greedy wrapper for the lua function call stack", function()
 
 		it("should return simple values",function()
-			local t = json.decode(stack_to_json(1))
-			assert.are.same( {1} , t )
+			assert.are.same( {1}  ,( json.decode( stack_to_json(1) ) ) )
+			assert.are.same( {1.1},( json.decode( stack_to_json(1.1) ) ) )
+			assert.are.same( {"1"},( json.decode( stack_to_json("1") ) ) )
 		end)
 
 	end)
