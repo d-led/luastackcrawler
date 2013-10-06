@@ -7,6 +7,3 @@
 [submodule "picojson"]
 	path = picojson
 	url = https://github.com/kazuho/picojson.git
-[submodule "lua/json"]
-	path = lua/json
-	url = https://github.com/clementfarabet/lua---json.git
