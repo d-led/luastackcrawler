@@ -107,8 +107,6 @@ UpgradeLog*.XML
 
 # NuGet
 packages/
-simpletest/stackcrawlertest
 
-*.dylib
-
-*.so
+*.idb
+*.orig
