@@ -12,7 +12,7 @@ namespace {
 
 	std::string stack_to_json(LuaStack S) {
 		SerializableLuaStack s(S);
-		return picojson::convert::to_string(s);
+		return s.Value().serialize();
 	}
 
 }
