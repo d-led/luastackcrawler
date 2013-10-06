@@ -43,7 +43,7 @@ std::string trystack2(int a,lua_State* L) {
 	return PrintStack(S);
 }
 
-std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
+std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T/* ignored due to greedy stack,std::string e*/)
 {
 	std::string res=b+" "+ToString(T)+" ";
 	std::cout<<res<<std::endl;
