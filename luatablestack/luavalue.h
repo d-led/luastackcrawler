@@ -29,16 +29,21 @@ typedef boost::variant<
 	LuaUserdata
 	 >LuaMultiValue;
 
+class TableCrawler;
 class LuaTable {
 public:
 	void Append(LuaMultiValue const& key,LuaMultiValue const& value);
 public:
 	typedef boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
 public:
+	const void* lua_ptr() const;
+public:
 	EntryContainer::const_iterator begin() const;
 	EntryContainer::const_iterator end() const;
 private:
+	friend class TableCrawler;
 	EntryContainer entries;
+	const void* lua_table_ptr;
 };
 
 struct LuaType {

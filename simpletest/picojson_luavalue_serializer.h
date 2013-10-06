@@ -3,11 +3,21 @@
 #include <picojson_vector_serializer.h>
 #include "../luatablestack/luavalue.h"
 #include "../luatablestack/luastack.h"
+#include <sstream>
+#include <iomanip>
 
 namespace picojson {
 	namespace convert {
 
 		namespace visitors {
+
+			template <typename TPtr>
+			std::string to_addr(std::string const& title,TPtr p) {
+				//table: 0x7fcd2243ef90
+				std::stringstream ss;
+				ss<<title<<": "<<std::noshowbase<<std::hex<<std::setw(12)<<p;
+				return ss.str();
+			} 
 
 			value _ToValue(LuaMultiValue const& v);
 			value GetValue(LuaTable const& T);
@@ -39,7 +49,7 @@ namespace picojson {
 					if (!v) return TValue();
 					bool already_done=Done(v.get());
 					if (!already_done) AddDone(v.get());
-					return (!already_done) ? GetValue(*v) : value(std::string("table*"));
+					return (!already_done) ? GetValue(*v) : value(to_addr("table",v->lua_ptr()));
 				}
 
 				TValue operator()(LuaFunction const& v) const

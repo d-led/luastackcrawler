@@ -15,6 +15,9 @@ describe("C++ LuaStackCrawler JSON output", function()
 			assert.are.same( {1}  ,( json.decode( stack_to_json(1) ) ) )
 			assert.are.same( {1.1},( json.decode( stack_to_json(1.1) ) ) )
 			assert.are.same( {"1"},( json.decode( stack_to_json("1") ) ) )
+			local t={}
+			print (t)
+			print(stack_to_json( {a=t,b=t} ))
 		end)
 
 	end)

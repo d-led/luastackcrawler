@@ -112,3 +112,5 @@ packages/
 *.orig
 *.lib
 *.so
+
+*.so
