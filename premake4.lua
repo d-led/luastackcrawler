@@ -64,7 +64,7 @@ newaction {
    trigger     = "test",
    description = "run lua test",
    execute     = function ()
-      os.execute("cd simpletest && lua -l stackcrawlertest json_test.lua && cd ..")
+      os.execute("cd simpletest && busted json_test.lua && cd ..")
    end
 }
 
