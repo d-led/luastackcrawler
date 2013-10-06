@@ -18,7 +18,7 @@ ifeq ($(config),debug_native)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
@@ -43,7 +43,7 @@ ifeq ($(config),debug_x32)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
@@ -68,7 +68,7 @@ ifeq ($(config),debug_x64)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
@@ -93,7 +93,7 @@ ifeq ($(config),release_native)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
@@ -118,7 +118,7 @@ ifeq ($(config),release_x32)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
@@ -143,7 +143,7 @@ ifeq ($(config),release_x64)
   INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -std=c++11 -fPIC
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
