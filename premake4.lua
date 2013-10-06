@@ -53,7 +53,7 @@ function CompilerSpecificConfiguration()
 	configuration { "vs*"}
 
 	configuration { "macosx" }
-		postbuildcommands { "rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so" }
+		postbuildcommands { "mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so" }
 
 	configuration { "*" }
 end

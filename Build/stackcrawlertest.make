@@ -47,7 +47,7 @@ ifeq ($(config),debug)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
@@ -71,7 +71,7 @@ ifeq ($(config),release)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
@@ -95,7 +95,7 @@ ifeq ($(config),debug32)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
@@ -119,7 +119,7 @@ ifeq ($(config),release32)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
@@ -143,7 +143,7 @@ ifeq ($(config),debug64)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
@@ -167,7 +167,7 @@ ifeq ($(config),release64)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so
+	mv ../simpletest/stackcrawlertest.dylib ../simpletest/stackcrawlertest.so
   endef
 endif
 
