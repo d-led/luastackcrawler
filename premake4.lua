@@ -30,13 +30,15 @@ function DefaultConfig()
 	configuration "Debug"
 		defines { "DEBUG", "_DEBUG" }
 		objdir "Build/obj"
-		targetdir "./Lua/lib"
+		--targetdir "./Lua/lib"
+		targetdir "simpletest"
 		targetprefix ""
 		flags { "Symbols" }
 	configuration "Release"
 		defines { "RELEASE" }
 		objdir "Build/obj"
-		targetdir "./Lua/lib"
+		--targetdir "./Lua/lib"
+		targetdir "simpletest"
 		targetprefix ""
 		flags { "Optimize" }
 	configuration "*" -- to reset configuration filter
@@ -63,7 +65,7 @@ newaction {
    trigger     = "test",
    description = "run lua test",
    execute     = function ()
-      os.execute("simpletest") -- test.lua
+      os.execute("cd simpletest && ./stackcrawlertest && cd ..") -- test.lua
    end
 }
 
@@ -91,7 +93,8 @@ local sln=solution "stackcrawlertest"
 ----------------------------------------------------------------------------------------------------------------
    local dll=project "stackcrawlertest"
    location "Build"
-		kind "SharedLib"
+		--kind "SharedLib"
+		kind "ConsoleApp"
 		DefaultConfig()
 		language "C++"
 		files {
