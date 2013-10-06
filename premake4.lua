@@ -30,14 +30,12 @@ function DefaultConfig()
 	configuration "Debug"
 		defines { "DEBUG", "_DEBUG" }
 		objdir "Build/obj"
-		--targetdir "./Lua/lib"
 		targetdir "simpletest"
 		targetprefix ""
 		flags { "Symbols" }
 	configuration "Release"
 		defines { "RELEASE" }
 		objdir "Build/obj"
-		--targetdir "./Lua/lib"
 		targetdir "simpletest"
 		targetprefix ""
 		flags { "Optimize" }
@@ -46,17 +44,18 @@ end
 
 function CompilerSpecificConfiguration()
 	configuration {"xcode*" }
-		-- postbuildcommands {"$TARGET_BUILD_DIR/$TARGET_NAME"}
 
 	configuration {"gmake"}
-		postbuildcommands  { "$(TARGET)" }
 		buildoptions { "-v -stdlib=libc++ -std=c++11 -fPIC" }
 
 	configuration {"codeblocks" }
-		postbuildcommands { "$(TARGET_OUTPUT_FILE)"}
 
 	configuration { "vs*"}
-		postbuildcommands { "\"$(TargetPath)\"" }
+
+	configuration { "macosx" }
+		postbuildcommands { "rename ./simpletest/stackcrawlertest.dylib ./simpletest/stackcrawlertest.so" }
+
+	configuration { "*" }
 end
 
 ----------------------------------------------------------------------------------------------------------------
@@ -65,7 +64,7 @@ newaction {
    trigger     = "test",
    description = "run lua test",
    execute     = function ()
-      os.execute("cd simpletest && ./stackcrawlertest && cd ..") -- test.lua
+      os.execute("cd simpletest && lua -l stackcrawlertest json_test.lua && cd ..")
    end
 }
 
@@ -93,8 +92,7 @@ local sln=solution "stackcrawlertest"
 ----------------------------------------------------------------------------------------------------------------
    local dll=project "stackcrawlertest"
    location "Build"
-		--kind "SharedLib"
-		kind "ConsoleApp"
+		kind "SharedLib"
 		DefaultConfig()
 		language "C++"
 		files {
@@ -104,3 +102,4 @@ local sln=solution "stackcrawlertest"
 			"./simpletest/*.h"
 		}
 		links(cfg.links)
+		CompilerSpecificConfiguration()
