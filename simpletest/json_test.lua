@@ -1,6 +1,7 @@
 local testlib=assert(require"stackcrawlertest")
 package.path=package.path..";../Lua/?/?.lua"
-print(package.path)
+package.cpath=package.cpath..";./?.so"
+print(package.path,package.cpath)
 local json=assert(require"json")
 
 describe("testing libraries are loaded correctly", function()
