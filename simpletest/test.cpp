@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 #include "../luatablestack/luatablecrawler.h"
 #include "../luatablestack/luabridge_extensions.h"
@@ -50,7 +51,8 @@ std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string
 }
 
 std::string trystackextension(std::string b,LuaStack S) {
-	std::cout<<picojson::convert::to_string(SerializableLuaStack(S))<<std::endl;
+	SerializableLuaStack s(S);
+	std::cout<<picojson::convert::to_string(s)<<std::endl;
 	std::cout<<b<<" ";
 	return PrintStack(S);
 }
@@ -70,14 +72,15 @@ void tryluaref(luabridge::LuaRef ref)
 		;
 }
 
+static bool value_is_number(std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
+	  return GetType(entry.first) == LuaType::NUMBER;	
+}
+
 int ArraySize(boost::shared_ptr<LuaTable> T)
 {
  if (!T)
   return 0;
- return std::count_if(T->begin(),T->end(),
-  [](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
-	  return GetType(entry.first)==LuaType::NUMBER;
- });
+ return std::count_if(T->begin(),T->end(),value_is_number);
 }
 
 int main() 
