@@ -15,7 +15,7 @@ namespace picojson {
 			std::string to_addr(std::string const& title,TPtr p) {
 				//table: 0x7fcd2243ef90
 				std::stringstream ss;
-				ss<<title<<": "<<std::noshowbase<<std::hex<<std::setw(12)<<p;
+				ss<<title<<": "<<std::noshowbase<<std::hex<<p;
 				return ss.str();
 			} 
 
