@@ -34,11 +34,11 @@ ifeq ($(config),debug)
   DEFINES   += -DDEBUG -D_DEBUG
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -dynamiclib -flat_namespace
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
@@ -58,11 +58,11 @@ ifeq ($(config),release)
   DEFINES   += -DRELEASE
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -Wl,-x -dynamiclib -flat_namespace
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
@@ -82,11 +82,11 @@ ifeq ($(config),debug32)
   DEFINES   += -DDEBUG -D_DEBUG
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -dynamiclib -flat_namespace -m32 -L/usr/lib32
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
@@ -106,11 +106,11 @@ ifeq ($(config),release32)
   DEFINES   += -DRELEASE
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -Wl,-x -dynamiclib -flat_namespace -m32 -L/usr/lib32
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
@@ -130,11 +130,11 @@ ifeq ($(config),debug64)
   DEFINES   += -DDEBUG -D_DEBUG
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -dynamiclib -flat_namespace -m64 -L/usr/lib64
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
@@ -154,11 +154,11 @@ ifeq ($(config),release64)
   DEFINES   += -DRELEASE
   INCLUDES  += -I.. -I../LuaBridge/Source/LuaBridge -I../luatablestack -I../picojson -I../picojson_serializer
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
-  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -stdlib=libc++ -std=c++11 -fPIC
+  CFLAGS    += $(CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -stdlib=libc++ -fPIC
   CXXFLAGS  += $(CFLAGS) 
   LDFLAGS   += -L.. -Wl,-x -dynamiclib -flat_namespace -m64 -L/usr/lib64
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
-  LIBS      += -llua
+  LIBS      += -llua -lc++
   LDDEPS    += 
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(LIBS) $(LDFLAGS)
   define PREBUILDCMDS
