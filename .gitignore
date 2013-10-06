@@ -11,7 +11,6 @@
 [Dd]ebug*/
 [Rr]elease/
 
-build/
 
 
 [Tt]est[Rr]esult
@@ -109,3 +108,5 @@ UpgradeLog*.XML
 
 # NuGet
 packages/
+
+*.idb
