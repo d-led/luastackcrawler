@@ -43,16 +43,16 @@ describe("C++ LuaStackCrawler JSON output", function()
 				assert.are.same( { expected },result)
 			end)
 
-			-- it("should be able to handle tables both as keys and as values",function ()
-			-- 	local t = { a = empty_table }
-			-- 	t[empty_table]="a"
-			-- 	local expected = {
-			-- 		{tostring(t)},
-			-- 		{ Key = "a", Value = empty_table_representation },
-			-- 		{ Key = empty_table_representation , Value = "a" }
-			-- 	}
-			-- 	print ( stack_to_json(t) ) 
-			-- end)
+			it("should be able to handle tables both as keys and as values",function ()
+				local t = { }
+				t[t] = t
+				local s = tostring(t)
+				local expected = {
+					s,
+					{ Key = { s }, Value = { s } }
+				}
+				assert.are.same ( { expected } , ( json.decode( stack_to_json(t) ) ) ) 
+			end)
 		end)
 
 	end)
