@@ -48,8 +48,13 @@ namespace picojson {
 				{
 					if (!v) return TValue();
 					bool already_done=Done(v.get());
-					if (!already_done) AddDone(v.get());
-					return (!already_done) ? GetValue(*v) : value(to_addr("table",v->lua_ptr()));
+					if (!already_done) {
+						AddDone(v.get());
+						return GetValue(*v);
+					}
+					::picojson::array a;
+					a.push_back( value( to_addr( "table",v->lua_ptr() ) ) );
+					return value(a);
 				}
 
 				TValue operator()(LuaFunction const& v) const

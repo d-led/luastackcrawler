@@ -30,6 +30,7 @@ namespace picojson {
 			value GetValue(LuaTable const& T)
 			{
 				::picojson::array a;
+				a.push_back( value( to_addr( "table",T.lua_ptr() )));
 				for (LuaTable::EntryContainer::const_iterator it=T.begin(); it!=T.end();++it) {
 					value key = _ToValue(it->first);
 					value val = _ToValue(it->second);
