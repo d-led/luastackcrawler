@@ -117,7 +117,7 @@ License
 
 This code is distributed under the MIT License:
 
-Copyright (c) 2012 Dmitry Ledentsov
+Copyright (c) 2012-2013 Dmitry Ledentsov
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
