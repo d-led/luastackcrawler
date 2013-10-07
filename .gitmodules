@@ -1,6 +1,12 @@
 [submodule "LuaBridge"]
 	path = LuaBridge
 	url = https://github.com/vinniefalco/LuaBridge.git
-[submodule "Catch"]
-	path = Catch
-	url = https://github.com/philsquared/Catch.git
+[submodule "picojson_serializer"]
+	path = picojson_serializer
+	url = https://github.com/d-led/picojson_serializer.git
+[submodule "picojson"]
+	path = picojson
+	url = https://github.com/kazuho/picojson.git
+[submodule "Lua/json"]
+	path = Lua/json
+	url = https://github.com/clementfarabet/lua---json.git

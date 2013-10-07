@@ -11,8 +11,6 @@
 [Dd]ebug*/
 [Rr]elease/
 
-build/
-
 
 [Tt]est[Rr]esult
 [Bb]uild[Ll]og.*
@@ -109,3 +107,10 @@ UpgradeLog*.XML
 
 # NuGet
 packages/
+
+*.idb
+*.orig
+*.lib
+*.so
+
+*.so

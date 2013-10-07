@@ -14,6 +14,7 @@ void TableCrawler::GetTable(lua_State *L, int index,boost::shared_ptr<LuaTable> 
 {
 	const void* ref=lua_topointer(L,index);
 	tables[ref]=T;
+	T->lua_table_ptr=ref;
 
 	// Push another reference to the table on top of the stack (so we know
 	// where it is, and this function can work for negative, positive and

@@ -1,8 +1,8 @@
 #pragma once
 #include <boost/variant.hpp>
-#include <boost/container/vector.hpp>
 #include <boost/shared_ptr.hpp>
 #include <string>
+#include <vector>
 #include <boost/functional.hpp>
 
 class LuaNil {
@@ -29,16 +29,21 @@ typedef boost::variant<
 	LuaUserdata
 	 >LuaMultiValue;
 
+class TableCrawler;
 class LuaTable {
 public:
 	void Append(LuaMultiValue const& key,LuaMultiValue const& value);
 public:
-	typedef boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
+	typedef std::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
+public:
+	const void* lua_ptr() const;
 public:
 	EntryContainer::const_iterator begin() const;
 	EntryContainer::const_iterator end() const;
 private:
+	friend class TableCrawler;
 	EntryContainer entries;
+	const void* lua_table_ptr;
 };
 
 struct LuaType {

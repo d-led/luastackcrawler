@@ -52,6 +52,11 @@ void LuaTable::Append(LuaMultiValue const& key,LuaMultiValue const& value)
 	entries.push_back(std::make_pair(key,value));
 }
 
+const void* LuaTable::lua_ptr() const
+{
+	return lua_table_ptr;
+}
+
 LuaTable::EntryContainer::const_iterator LuaTable::begin() const
 {
 	return entries.begin();

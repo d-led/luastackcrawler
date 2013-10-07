@@ -3,9 +3,12 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 #include "../luatablestack/luatablecrawler.h"
 #include "../luatablestack/luabridge_extensions.h"
+
+#include "picojson_luavalue_serializer.h"
 
 void report_errors(lua_State *L, int status)
 {
@@ -40,7 +43,7 @@ std::string trystack2(int a,lua_State* L) {
 	return PrintStack(S);
 }
 
-std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string e)
+std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T/* ignored due to greedy stack,std::string e*/)
 {
 	std::string res=b+" "+ToString(T)+" ";
 	std::cout<<res<<std::endl;
@@ -48,6 +51,8 @@ std::string tryextension(std::string b,boost::shared_ptr<LuaTable> T,std::string
 }
 
 std::string trystackextension(std::string b,LuaStack S) {
+	SerializableLuaStack s(S);
+	std::cout<<picojson::convert::to_string(s)<<std::endl;
 	std::cout<<b<<" ";
 	return PrintStack(S);
 }
@@ -67,14 +72,15 @@ void tryluaref(luabridge::LuaRef ref)
 		;
 }
 
+static bool value_is_number(std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
+	  return GetType(entry.first) == LuaType::NUMBER;	
+}
+
 int ArraySize(boost::shared_ptr<LuaTable> T)
 {
  if (!T)
   return 0;
- return std::count_if(T->begin(),T->end(),
-  [](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
-  return boost::get<double>(&entry.first); /*number*/
- });
+ return std::count_if(T->begin(),T->end(),value_is_number);
 }
 
 int main() 
