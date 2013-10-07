@@ -12,7 +12,7 @@ before_script:
 
 script:
   - sed 's/#include "detail\/dump.h"//g' "./LuaBridge/Source/LuaBridge/LuaBridge.h" > r.tmp && mv r.tmp LuaBridge/Source/LuaBridge/LuaBridge.h 
-  - make -C Build config=release_native
+  - make -C Build config=release
   - cd simpletest
   - ls
   - busted json_test.lua
