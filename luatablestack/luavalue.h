@@ -1,6 +1,5 @@
 #pragma once
 #include <boost/variant.hpp>
-#include <boost/container/vector.hpp>
 #include <boost/shared_ptr.hpp>
 #include <string>
 #include <boost/functional.hpp>
@@ -34,7 +33,7 @@ class LuaTable {
 public:
 	void Append(LuaMultiValue const& key,LuaMultiValue const& value);
 public:
-	typedef boost::container::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
+	typedef std::vector<std::pair<LuaMultiValue,LuaMultiValue> > EntryContainer;
 public:
 	const void* lua_ptr() const;
 public:
