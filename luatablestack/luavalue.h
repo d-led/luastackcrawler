@@ -2,6 +2,7 @@
 #include <boost/variant.hpp>
 #include <boost/shared_ptr.hpp>
 #include <string>
+#include <vector>
 #include <boost/functional.hpp>
 
 class LuaNil {
