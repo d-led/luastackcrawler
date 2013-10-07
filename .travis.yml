@@ -1,0 +1,19 @@
+language: cpp
+
+branches:
+  only:
+    - picojson-serializable
+
+before_script:
+  - sudo apt-get install libboost-all-dev
+  - sudo apt-get install lua5.1 liblua5.1-dev
+  - sudo apt-get install luarocks
+  - sudo luarocks install busted
+
+script:
+  - sed 's/#include "detail\/dump.h"//g' "./LuaBridge/Source/LuaBridge/LuaBridge.h" > r.tmp && mv r.tmp LuaBridge/Source/LuaBridge/LuaBridge.h 
+  - make -C Build config=release
+  - cd simpletest
+  - ls
+  - busted json_test.lua
+  - cd ..
