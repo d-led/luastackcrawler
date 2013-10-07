@@ -21,7 +21,7 @@ ifeq ($(config),debug_native)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -shared
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
@@ -46,7 +46,7 @@ ifeq ($(config),debug_x32)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -shared -m32 -L/usr/lib32
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
@@ -71,7 +71,7 @@ ifeq ($(config),debug_x64)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -shared -m64 -L/usr/lib64
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
@@ -96,7 +96,7 @@ ifeq ($(config),release_native)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
@@ -121,7 +121,7 @@ ifeq ($(config),release_x32)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared -m32 -L/usr/lib32
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
@@ -146,7 +146,7 @@ ifeq ($(config),release_x64)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -std=gnu++0x -fPIC
   ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CFLAGS)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += -llua5
+  LIBS += -llua5.1-c++
   LDDEPS +=
   ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared -m64 -L/usr/lib64
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
