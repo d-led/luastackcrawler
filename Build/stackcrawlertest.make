@@ -15,7 +15,7 @@ ifeq ($(config),debug_native)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/native/Debug
   DEFINES += -DDEBUG -D_DEBUG
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -fPIC -v -std=gnu++0x -fPIC
@@ -40,7 +40,7 @@ ifeq ($(config),debug_x32)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/x32/Debug
   DEFINES += -DDEBUG -D_DEBUG
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m32 -fPIC -v -std=gnu++0x -fPIC
@@ -65,7 +65,7 @@ ifeq ($(config),debug_x64)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/x64/Debug
   DEFINES += -DDEBUG -D_DEBUG
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g -m64 -fPIC -v -std=gnu++0x -fPIC
@@ -90,7 +90,7 @@ ifeq ($(config),release_native)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/native/Release
   DEFINES += -DRELEASE
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -fPIC -v -std=gnu++0x -fPIC
@@ -115,7 +115,7 @@ ifeq ($(config),release_x32)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/x32/Release
   DEFINES += -DRELEASE
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m32 -fPIC -v -std=gnu++0x -fPIC
@@ -140,7 +140,7 @@ ifeq ($(config),release_x64)
   TARGET = $(TARGETDIR)/stackcrawlertest.so
   OBJDIR = obj/x64/Release
   DEFINES += -DRELEASE
-  INCLUDES += -I"../Lua/include" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
+  INCLUDES += -I"/usr/include/lua5.1" -I"../LuaBridge/Source/LuaBridge" -I"../luatablestack" -I"../picojson" -I"../picojson_serializer"
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) $(FORCE_INCLUDE)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2 -m64 -fPIC -v -std=gnu++0x -fPIC

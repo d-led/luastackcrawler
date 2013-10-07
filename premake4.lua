@@ -3,7 +3,7 @@ local OS=os.get()
 local cmd = {
  dir =     { linux = "ls", windows = "dir", macosx = "ls" },
  libdirs = { linux = { "" }, windows = { "./Lua/lib" }, macosx = { "" } },
- includedirs = { linux = { "./Lua/include"}, windows = { "./Lua/include", os.getenv("BOOST") }, macosx = { "" } },
+ includedirs = { linux = { "/usr/include/lua5.1"}, windows = { "./Lua/include", os.getenv("BOOST") }, macosx = { "" } },
  links = { linux = "lua5.1", windows = "lua5.1", macosx = { "lua","c++" } },
  location = { linux = "Build", windows = "Build", macosx = "BuildClang" },
  buildoptions = { linux = "-v -std=gnu++0x -fPIC", windows = "-v -std=c++11 -fPIC", macosx = "-v -stdlib=libc++ -std=c++11 -fPIC" }
