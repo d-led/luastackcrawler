@@ -23,7 +23,7 @@ ifeq ($(config),debug_native)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -shared
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -shared
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -48,7 +48,7 @@ ifeq ($(config),debug_x32)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -shared -m32 -L/usr/lib32
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -shared -m32 -L/usr/lib32
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -73,7 +73,7 @@ ifeq ($(config),debug_x64)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -shared -m64 -L/usr/lib64
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -shared -m64 -L/usr/lib64
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -98,7 +98,7 @@ ifeq ($(config),release_native)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -s -shared
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -123,7 +123,7 @@ ifeq ($(config),release_x32)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -s -shared -m32 -L/usr/lib32
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared -m32 -L/usr/lib32
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -148,7 +148,7 @@ ifeq ($(config),release_x64)
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -llua
   LDDEPS +=
-  ALL_LDFLAGS += $(LDFLAGS) -L../Lua/lib -s -shared -m64 -L/usr/lib64
+  ALL_LDFLAGS += $(LDFLAGS) -L.. -s -shared -m64 -L/usr/lib64
   LINKCMD = $(CXX) -o $(TARGET) $(OBJECTS) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
