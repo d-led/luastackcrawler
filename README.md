@@ -29,7 +29,7 @@ int ArraySize(boost::shared_ptr<LuaTable> T)
 		T->begin(),
 		T->end(),
   		[](std::pair<LuaMultiValue,LuaMultiValue> const& entry) {
-			return entry.first.which()==2; /*number*/
+			return GetType(entry.first) == LuaType::NUMBER;
 		});
 }
 ````
