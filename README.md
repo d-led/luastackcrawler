@@ -4,7 +4,7 @@ luastackcrawler
 A walkable wrapper of the Lua stack,including "unwinding" the tables.
 Can be especially useful in conjunction with LuaBridge for supporting variable-length parameter lists and tables as parameters.
 
-The test is not automated yet.
+[![Build Status](https://travis-ci.org/d-led/luastackcrawler.png)](https://travis-ci.org/d-led/luastackcrawler)
 
 Motivation
 ----------
@@ -37,9 +37,6 @@ int ArraySize(boost::shared_ptr<LuaTable> T)
 
 Usage
 -----
-
-Use the visual studio project to compile in Visual Studio and start the test. Since the dependencies are portable, it is expected, that
-the crawler is also portable. This will be tested in the future.
 
 Example of usage:
 
