@@ -1,6 +1,3 @@
-[submodule "LuaBridge"]
-	path = LuaBridge
-	url = https://github.com/vinniefalco/LuaBridge.git
 [submodule "picojson_serializer"]
 	path = picojson_serializer
 	url = https://github.com/d-led/picojson_serializer.git
@@ -10,3 +7,6 @@
 [submodule "Lua/json"]
 	path = Lua/json
 	url = https://github.com/clementfarabet/lua---json.git
+[submodule "LuaBridge"]
+	path = LuaBridge
+	url = https://github.com/d-led/LuaBridge.git
