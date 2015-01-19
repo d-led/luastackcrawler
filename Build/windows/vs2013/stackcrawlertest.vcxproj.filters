@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="luatablestack">
+      <UniqueIdentifier>{A5B51EA7-1176-9ADD-DAB0-E35A4630DFB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{65689E7C-519F-9F0D-FA8B-8510E6A11B0F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\test\json_test.lua">
+      <Filter>test</Filter>
+    </None>
+    <None Include="..\..\..\test\test.lua">
+      <Filter>test</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\luatablestack\luabridge_extensions.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\luatablestack\luasctackcrawler.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\luatablestack\luastack.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\luatablestack\luatablecrawler.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\luatablestack\luavalue.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\luatablestack\luavalueutil.h">
+      <Filter>luatablestack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\test\picojson_luavalue_serializer.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\test\stackcrawlertest_lib.h">
+      <Filter>test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\luatablestack\lauvalueutil.cpp">
+      <Filter>luatablestack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\luatablestack\luastack.cpp">
+      <Filter>luatablestack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\luatablestack\luastackcrawler.cpp">
+      <Filter>luatablestack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\luatablestack\luatablecrawler.cpp">
+      <Filter>luatablestack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\luatablestack\luavalue.cpp">
+      <Filter>luatablestack</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\picojson_luavalue_serializer.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\stackcrawlertest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\stackcrawlertest_lib.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\test.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
