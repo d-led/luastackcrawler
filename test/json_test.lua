@@ -2,7 +2,11 @@ local candidates = {
 	'../bin/windows/vs2013/x32/Release/?.dll',
 	'../bin/windows/vs2013/x64/Release/?.dll',
 	'../bin/windows/vs2013/x32/Debug/?.dll',
-	'../bin/windows/vs2013/x64/Debug/?.dll'
+	'../bin/windows/vs2013/x64/Debug/?.dll',
+	'../bin/linux/gmake/x32/Debug/?.so',
+	'../bin/linux/gmake/x32/Release/?.so',
+	'../bin/linux/gmake/x64/Debug/?.so',
+	'../bin/linux/gmake/x64/Release/?.so'
 }
 
 local additional_cpath = table.concat( candidates, ";" )
