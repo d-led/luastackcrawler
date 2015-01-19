@@ -7,7 +7,7 @@ before_script:
   - sudo luarocks install busted
 
 script:
-  - make -C Build/linux/gmake config=release32
+  - make -C Build/linux/gmake config=release64
   - cd test
   - ls
   - busted json_test.lua
