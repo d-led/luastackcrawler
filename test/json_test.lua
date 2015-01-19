@@ -10,7 +10,7 @@ local candidates = {
 }
 
 local additional_cpath = table.concat( candidates, ";" )
-package.cpath = additional_cpath..package.cpath
+package.cpath = additional_cpath..';'..package.cpath
 
 package.path=package.path..";../Lua/?/?.lua"
 
