@@ -1,6 +1,17 @@
-local testlib=assert(require"stackcrawlertest")
+local candidates = {
+	'../bin/windows/vs2013/x32/Release/?.dll',
+	'../bin/windows/vs2013/x64/Release/?.dll',
+	'../bin/windows/vs2013/x32/Debug/?.dll',
+	'../bin/windows/vs2013/x64/Debug/?.dll'
+}
+
+local additional_cpath = table.concat( candidates, ";" )
+package.cpath = additional_cpath..package.cpath
+
 package.path=package.path..";../Lua/?/?.lua"
-package.cpath=package.cpath..";./?.so"
+
+local testlib=assert(require"stackcrawlertest")
+
 local json=assert(require"json")
 
 describe("testing libraries are loaded correctly", function()
