@@ -8,7 +8,7 @@ before_script:
 
 script:
   - make -C Build/linux/gmake config=release64
+  - ls -R bin
   - cd test
-  - ls
   - busted json_test.lua
   - cd ..
